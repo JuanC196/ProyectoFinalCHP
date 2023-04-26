@@ -4,5 +4,23 @@
 
 {% block ContenidoCambiante %}
 
+{% if miFormulario.errors %}
 
+<p> Los datos no coinciden</p>
+
+{% endif %}
+<br>
+<center><div>
+    <form action="" method="POST"> {% csrf_token %}
+       <h2>Registra tu usuario</h2>
+       <table>
+
+        {{ miFormulario.as_table }}
+
+       </table>
+       <br>
+       <input type="submit" value="Enviar">
+    </form>
+        
+</div></center>
 {% endblock %}
