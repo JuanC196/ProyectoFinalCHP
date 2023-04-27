@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import *
-from AppFinal.forms import UsuarioFormulario
+from AppFinal.forms import *
 
 # Create your views here.
 def inicio(request):
@@ -26,8 +26,50 @@ def usuarios(request):
     return render(request, "AppFinal/usuarios.html", {"miFormulario": miFormulario})
 
 def vehiculos(request):
-    return render(request, "AppFinal/vehiculos.html")
+    if request.method == 'POST':
+       miFormulario = VehiculoFormulario(request.POST) 
+       print(miFormulario)
+
+       if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+
+            vehiculo = Vehiculos(marca=informacion['marca'],tipo=informacion['tipo'],modelo=informacion['modelo'],precio=informacion['precio'] )
+
+            vehiculo.save()
+        
+            return render(request, "AppFinal/inicio.html")
+    else:
+       miFormulario = VehiculoFormulario()
+    
+    return render(request, "AppFinal/vehiculos.html", {"miFormulario": miFormulario})
 
 def comentarios(request):
-    return render(request, "AppFinal/comentarios.html")
+    if request.method == 'POST':
+       miFormulario = ComentarioFormulario(request.POST) 
+       print(miFormulario)
 
+       if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+
+            comentario = Comentario(nombre=informacion['nombre'],email=informacion['email'],telefono=informacion['telefono'],texto=informacion['texto'])
+
+            comentario.save()
+        
+            return render(request, "AppFinal/inicio.html")
+    else:
+       miFormulario = ComentarioFormulario()
+    
+    return render(request, "AppFinal/comentarios.html", {"miFormulario": miFormulario})
+
+def buscar(request):
+    #respuesta = f"Aqui esta la coincidencia encontrada: {request.GET['nombre']}"
+
+    if request.GET["nombre"]:
+        nombre = request.GET['nombre']
+        usuario= Usuario.objects.filter(usuario__icontains=usuario)
+
+        return render(request, "AppFinal/vehiculos.html", {"Usuario":Usuario, "nombre":nombre})
+    else:
+        respuesta = "No enviaste datos"
+
+    return HttpResponse(respuesta)

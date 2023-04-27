@@ -35,6 +35,46 @@
        </div>
     </div>
  </div>
+ <!-- BANNER END-->
+ <br>
+ <center><div>
+   <form action="" method="POST"> {% csrf_token %}
+      <h2>Registra tu vehiculo</h2>
+      <table>
+
+       {{ miFormulario.as_table }}
+
+      </table>
+      <br>
+      <input type="submit" value="Enviar vehiculo">
+   </form>
+       
+</div></center>
+<!-- BANNER Beggining -->
+
+<br>
+<center><div>
+<form action="/AppFinal/buscar/" method="GET">
+   <input type="text" name="nombre" id="nombre">
+   <input type="submit" value="Buscar en DB">
+</form>
+
+<p>Buscando registro: {{nombre}}</p>
+{% if Usuario %}
+
+   <ul>
+      {% for nombre in usuario %}
+      <li> {{usuario.nombre}}</li>
+      <li> {{usuario.telefono}}</li>
+   {% endfor %}   
+   </ul>
+
+   {% endif %}
+</div>
+</center>
+ <!-- BANNER END-->
+
+ <!-- BANNER Beggining -->
  <div id="contact" class="bestCar">
     <div class="container">
        <div class="row">

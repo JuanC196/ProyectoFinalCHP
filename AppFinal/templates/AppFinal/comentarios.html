@@ -3,13 +3,27 @@
 {% load static %}
 
 {% block ContenidoCambiante %}
+<br>
+<center><div>
+    <form action="" method="POST"> {% csrf_token %}
+       <h2>Dejanos tu comentario</h2>
+       <table>
+
+        {{ miFormulario.as_table }}
+
+       </table>
+       <br>
+       <input type="submit" value="Enviar Comentario">
+    </form>
+        
+</div></center>
 <!-- cutomer -->
 <div class="cutomer">
     <div class="container">
        <div class="row">
           <div class="col-md-12">
              <div class="titlepage">
-                <h2>What is says our cutomer</h2>
+                <h2>Que dicen nuestros clientes</h2>
              </div>
           </div>
        </div>
