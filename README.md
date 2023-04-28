@@ -3,7 +3,7 @@
 <p>Bienvenido</p>
 
 <h1>--------------------------------------------</h1>
-<p>Primero copia este link a tu navegador despues de iniciar el servidor por Django</p>
+<p>Instrucciones para ejecutar el proyecto desde visual studio</p>
 
 <p>Ubicarse en la carpeta del Proyecto final por la terminal de Visual Studio ejecutando estos comandos</p>
 <p>1. cd ProyectoFinal</p>
