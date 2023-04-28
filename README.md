@@ -5,7 +5,10 @@
 <h1>--------------------------------------------</h1>
 <p>Primero copia este link a tu navegador despues de iniciar el servidor por Django</p>
 
-<p>http://127.0.0.1:8000/AppFinal/</p>
+<p>Ubicarse en la carpeta del Proyecto final por la terminal de Visual Studio ejecutando estos comandos</p>
+<p>1. cd ProyectoFinal</p>
+<p>2. python manage.py runserver</p>
+<p>3. Copiar en el navegador http://127.0.0.1:8000/AppFinal/</p>
 <h1>--------------------------------------------</h1>
 
 <p>En la pagina de inicio encontraras informacion general sobre el modelo de la pagina</p>
