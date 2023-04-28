@@ -50,29 +50,7 @@
    </form>
        
 </div></center>
-<!-- BANNER Beggining -->
 
-<br>
-<center><div>
-<form action="/AppFinal/buscar/" method="GET">
-   <input type="text" name="nombre" id="nombre">
-   <input type="submit" value="Buscar en DB">
-</form>
-
-<p>Buscando registro: {{nombre}}</p>
-{% if Usuario %}
-
-   <ul>
-      {% for nombre in usuario %}
-      <li> {{usuario.nombre}}</li>
-      <li> {{usuario.telefono}}</li>
-   {% endfor %}   
-   </ul>
-
-   {% endif %}
-</div>
-</center>
- <!-- BANNER END-->
 
  <!-- BANNER Beggining -->
  <div id="contact" class="bestCar">

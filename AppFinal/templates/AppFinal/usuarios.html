@@ -23,4 +23,28 @@
     </form>
         
 </div></center>
+<br>
+<center><h2>Verifica tu usuario</h2></center>
+<center><div>
+    
+    <form action="/AppFinal/buscar/" method="GET">
+       <input type="text" name="nombre" id="nombre">
+       <input type="submit" value="Buscar en DB">
+    </form>
+    <br>
+   
+    
+    {% if usuarios %}
+    <p>Buscando registro: {{nombre}}</p>
+       <ul>
+          {% for usuario in usuarios %}
+          <li> {{usuario.nombre}}</li>
+          <li> {{usuario.email}}</li>
+          <li> {{usuario.telefono}}</li>
+       {% endfor %}   
+       </ul>
+    
+       {% endif %}
+    </div>
+    </center>
 {% endblock %}

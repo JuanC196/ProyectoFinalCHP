@@ -62,13 +62,12 @@ def comentarios(request):
     return render(request, "AppFinal/comentarios.html", {"miFormulario": miFormulario})
 
 def buscar(request):
-    #respuesta = f"Aqui esta la coincidencia encontrada: {request.GET['nombre']}"
-
-    if request.GET["nombre"]:
+    
+    if request.GET['nombre']:
         nombre = request.GET['nombre']
-        usuario= Usuario.objects.filter(usuario__icontains=usuario)
-
-        return render(request, "AppFinal/vehiculos.html", {"Usuario":Usuario, "nombre":nombre})
+        usuarios = Usuario.objects.filter(nombre__icontains=nombre)
+    
+        return render(request, "AppFinal/usuarios.html", {"usuarios":usuarios,"nombre":nombre})
     else:
         respuesta = "No enviaste datos"
 
