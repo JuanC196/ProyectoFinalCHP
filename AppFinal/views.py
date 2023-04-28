@@ -37,7 +37,7 @@ def vehiculos(request):
 
             vehiculo.save()
         
-            return render(request, "AppFinal/inicio.html")
+            return render(request, "AppFinal/vehiculos.html")
     else:
        miFormulario = VehiculoFormulario()
     

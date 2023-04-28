@@ -33,7 +33,8 @@
     </form>
     <br>
     {% if usuarios %}
-    <p>Buscando registro..... {{nombre}}</p>
+    <p>Buscando registro..... "{{nombre}}"</p>
+    <br>
        <ul>
           {% for usuario in usuarios %}
           <li>Nombre: {{usuario.nombre}}</li>

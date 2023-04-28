@@ -62,7 +62,8 @@
    
     
   {% if vehiculos %}
-    <p>Buscando registro... {{marca}}</p>
+    <p>Buscando registro... "{{marca}}"</p>
+    <br>
        <ul>
           {% for vehiculo in vehiculos %}
           <li>Marca: {{vehiculo.marca}}</li>
