@@ -61,13 +61,25 @@ def comentarios(request):
     
     return render(request, "AppFinal/comentarios.html", {"miFormulario": miFormulario})
 
-def buscar(request):
-    
+def buscarusuario(request):
+
     if request.GET['nombre']:
         nombre = request.GET['nombre']
         usuarios = Usuario.objects.filter(nombre__icontains=nombre)
     
         return render(request, "AppFinal/usuarios.html", {"usuarios":usuarios,"nombre":nombre})
+    else:
+        respuesta = "No enviaste datos"
+
+    return HttpResponse(respuesta)
+
+def buscarvehiculo(request):
+    
+    if request.GET['marca']:
+        marca = request.GET['marca']
+        vehiculos = Vehiculos.objects.filter(marca__icontains=marca)
+    
+        return render(request, "AppFinal/vehiculos.html", {"vehiculos":vehiculos,"marca":marca})
     else:
         respuesta = "No enviaste datos"
 
