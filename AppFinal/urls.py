@@ -12,4 +12,7 @@ urlpatterns = [
     path('administradorusuario/', views.leerUsuarios, name="admin_user"),
     path('administradorvehiculo/', views.leerVehiculos, name="admin_vehicle"),
     path('administradorcomentario/', views.leerComentarios, name="admin_coment"),
+    path('eliminarUsuario/<usuario_nombre>/', views.eliminarUsuario, name="delete_user"),
+    path('eliminarVehiculo/<vehiculo_marca>/', views.eliminarVehiculo, name="delete_vehicle"),
+    path('eliminarComentario/<texto_texto>/', views.eliminarComentario, name="delete_coment"),
 ]

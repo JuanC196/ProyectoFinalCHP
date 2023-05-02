@@ -11,6 +11,12 @@
 {% for p in usuario %}
 
     <li>{{p}}</li>
+    <button>
+        <a href="{% url 'Usuarios' %}">Añadir</a>
+    </button>
+    <button>
+        <a href="{% url 'delete_user' p.nombre %}"> Eliminar </a>
+    </button>
 
 {% endfor %} 
 

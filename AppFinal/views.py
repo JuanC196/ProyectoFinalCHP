@@ -114,3 +114,33 @@ def leerComentarios(request):
     contexto = {"texto":texto}
 
     return render(request, "AppFinal/administrador_comentarios.html", contexto)
+
+#Vista de delete para Usuarios
+def eliminarUsuario(request, usuario_nombre):
+    usuario = Usuario.objects.get(nombre=usuario_nombre)
+    usuario.delete()
+
+    usuario = Usuario.objects.all()
+    contexto = {"usuario":usuario}
+
+    return render(request, "AppFinal/administrador_usuario.html", contexto)
+
+#Vista de delete para Vehiculos
+def eliminarVehiculo(request, vehiculo_marca):
+    vehiculo = Vehiculos.objects.get(marca=vehiculo_marca)
+    vehiculo.delete()
+
+    vehiculo = Vehiculos.objects.all()
+    contexto = {"vehiculo":vehiculo}
+
+    return render(request, "AppFinal/administrador_vehiculo.html", contexto)
+
+#Vista de delete para comentarios
+def eliminarComentario(request, texto_texto ):
+    texto = Comentario.objects.get(texto=texto_texto)
+    texto.delete()
+
+    texto = Comentario.objects.all()
+    contexto = {"texto":texto}
+
+    return render(request, "AppFinal/administrador_comentarios.html", contexto)

@@ -12,7 +12,12 @@
 {% for p in vehiculo %}
 
     <li>{{p}}</li>
-
+    <button>
+        <a href="{% url 'Vehiculos' %}">Añadir</a>
+    </button>
+    <button>
+        <a href="{% url 'delete_vehicle' p.marca %}"> Eliminar </a>
+    </button>
 {% endfor %}
 </div></center> 
 

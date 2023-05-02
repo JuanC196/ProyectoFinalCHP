@@ -11,7 +11,13 @@
 {% for p in texto %}
 
     <li>{{p}}</li>
-
+    <button>
+        <a href="{% url 'Comentarios' %}">Añadir</a>
+    </button>
+    <button>
+        <a href="{% url 'delete_coment' p.texto %}"> Eliminar </a>
+    </button>
+    
 {% endfor %} 
 
 {% endblock %}
