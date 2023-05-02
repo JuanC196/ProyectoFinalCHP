@@ -7,6 +7,7 @@ from AppFinal.forms import *
 def inicio(request):
     return render(request, "AppFinal/inicio.html")
 
+# Vista Usuarios para guardar informacion
 def usuarios(request):
     if request.method == 'POST':
        miFormulario = UsuarioFormulario(request.POST) 
@@ -25,6 +26,7 @@ def usuarios(request):
     
     return render(request, "AppFinal/usuarios.html", {"miFormulario": miFormulario})
 
+# Vista Vehiculos para guardar informacion
 def vehiculos(request):
     if request.method == 'POST':
        miFormulario = VehiculoFormulario(request.POST) 
@@ -43,6 +45,7 @@ def vehiculos(request):
     
     return render(request, "AppFinal/vehiculos.html", {"miFormulario": miFormulario})
 
+# Vista Comentarios para guardar informacion
 def comentarios(request):
     if request.method == 'POST':
        miFormulario = ComentarioFormulario(request.POST) 
@@ -61,6 +64,7 @@ def comentarios(request):
     
     return render(request, "AppFinal/comentarios.html", {"miFormulario": miFormulario})
 
+# Vista Usuarios para buscar Usuarios
 def buscarusuario(request):
 
     if request.GET['nombre']:
@@ -73,6 +77,7 @@ def buscarusuario(request):
 
     return HttpResponse(respuesta)
 
+# Vista Vehiculos para buscar Usuarios
 def buscarvehiculo(request):
     
     if request.GET['marca']:
@@ -84,3 +89,28 @@ def buscarvehiculo(request):
         respuesta = "No enviaste datos"
 
     return HttpResponse(respuesta)
+
+#Vista de menu de administrador
+def administrador_menu(request):
+    return render(request, "AppFinal/administrador_menu.html")
+
+#Vista de read lectura para usuarios
+def leerUsuarios(request):
+    usuario = Usuario.objects.all()
+    contexto = {"usuario":usuario}
+
+    return render(request, "AppFinal/administrador_usuario.html", contexto)
+
+#Vista de read lectura para vehiculos
+def leerVehiculos(request):
+    vehiculo = Vehiculos.objects.all()
+    contexto = {"vehiculo":vehiculo}
+
+    return render(request, "AppFinal/administrador_vehiculo.html", contexto)
+
+#Vista de read lectura para comentarios
+def leerComentarios(request):
+    texto = Comentario.objects.all()
+    contexto = {"texto":texto}
+
+    return render(request, "AppFinal/administrador_comentarios.html", contexto)

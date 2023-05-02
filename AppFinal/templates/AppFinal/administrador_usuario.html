@@ -1,0 +1,17 @@
+{% extends "AppFinal/padre.html" %}
+
+{% load static %}
+
+{% block ContenidoCambiante %}
+<br>
+<br>
+<center><div>
+    <h2>Todos los registros de Usuario</h2>
+    <br>
+{% for p in usuario %}
+
+    <li>{{p}}</li>
+
+{% endfor %} 
+
+{% endblock %}

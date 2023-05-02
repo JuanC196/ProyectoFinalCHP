@@ -1,0 +1,18 @@
+{% extends "AppFinal/padre.html" %}
+
+{% load static %}
+
+{% block ContenidoCambiante %}
+<br>
+<div class="text-bg">
+      <span>Bienvenido al area de administrador</span>
+      <a href="{% url 'admin_user' %}">Administrador Usuarios</a>
+</div>
+<div class="text-bg">
+      <a href="{% url 'admin_vehicle' %}">Administrador Vehiculos</a>
+</div>
+<div class="text-bg">
+      <a href="{% url 'admin_coment' %}">Administrador Comentarios</a>
+</div>
+
+{% endblock %}
