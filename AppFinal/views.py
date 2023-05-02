@@ -144,3 +144,83 @@ def eliminarComentario(request, texto_texto ):
     contexto = {"texto":texto}
 
     return render(request, "AppFinal/administrador_comentarios.html", contexto)
+
+#Vista para editar usuarios
+def editarUsuario(request, usuario_nombre):
+    usuario = Usuario.objects.get(nombre=usuario_nombre)
+
+    if request.method == 'POST':
+
+        miFormulario = UsuarioFormulario(request.POST)
+        print(miFormulario)
+
+        if miFormulario.is_valid:
+
+            informacion = miFormulario.cleaned_data
+
+            usuario.nombre = informacion['nombre']
+            usuario.email = informacion['email']
+            usuario.telefono = informacion['telefono']
+
+            usuario.save()
+
+            return render(request, "AppFinal/inicio.html")
+    
+    else:
+        miFormulario = UsuarioFormulario(initial={'nombre':usuario.nombre, 'email':usuario.email, 'telefono':usuario.telefono})
+
+    return render(request, "AppFinal/editarusuario.html", {"miFormulario":miFormulario, "usuario_nombre":usuario_nombre})
+
+#Vista para editar Vehiculos
+def editarVehiculo(request, vehiculo_marca):
+    vehiculo = Vehiculos.objects.get(marca=vehiculo_marca)
+
+    if request.method == 'POST':
+
+        miFormulario = VehiculoFormulario(request.POST)
+        print(miFormulario)
+
+        if miFormulario.is_valid:
+
+            informacion = miFormulario.cleaned_data
+
+            vehiculo.marca = informacion['marca']
+            vehiculo.tipo = informacion['tipo']
+            vehiculo.modelo = informacion['modelo']
+            vehiculo.precio = informacion['precio']
+
+            vehiculo.save()
+
+            return render(request, "AppFinal/inicio.html")
+    
+    else:
+        miFormulario = VehiculoFormulario(initial={'marca':vehiculo.marca, 'tipo':vehiculo.tipo, 'modelo':vehiculo.modelo, 'precio':vehiculo.precio})
+
+    return render(request, "AppFinal/editarvehiculo.html", {"miFormulario":miFormulario, "vehiculo_marca":vehiculo_marca})
+
+#Vista para editar comentarios
+def editarComentario(request, texto_texto):
+    texto = Comentario.objects.get(texto=texto_texto)
+
+    if request.method == 'POST':
+
+        miFormulario = ComentarioFormulario(request.POST)
+        print(miFormulario)
+
+        if miFormulario.is_valid:
+
+            informacion = miFormulario.cleaned_data
+
+            texto.nombre = informacion['nombre']
+            texto.email = informacion['email']
+            texto.telefono = informacion['telefono']
+            texto.texto = informacion['texto']
+
+            texto.save()
+
+            return render(request, "AppFinal/inicio.html")
+    
+    else:
+        miFormulario = ComentarioFormulario(initial={'nombre':texto.nombre, 'email':texto.email, 'telefono':texto.telefono, 'texto':texto.texto})
+
+    return render(request, "AppFinal/editarcomentario.html", {"miFormulario":miFormulario, "texto_texto":texto_texto})

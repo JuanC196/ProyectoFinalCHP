@@ -15,4 +15,7 @@ urlpatterns = [
     path('eliminarUsuario/<usuario_nombre>/', views.eliminarUsuario, name="delete_user"),
     path('eliminarVehiculo/<vehiculo_marca>/', views.eliminarVehiculo, name="delete_vehicle"),
     path('eliminarComentario/<texto_texto>/', views.eliminarComentario, name="delete_coment"),
+    path('editarUsuario/<usuario_nombre>/', views.editarUsuario, name="edit_user"),
+    path('editarVehiculo/<vehiculo_marca>/', views.editarVehiculo, name="edit_vehicle"),
+    path('editarComentario/<texto_texto>/', views.editarComentario, name="edit_coment"),
 ]

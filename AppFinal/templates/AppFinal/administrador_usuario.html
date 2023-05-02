@@ -17,7 +17,9 @@
     <button>
         <a href="{% url 'delete_user' p.nombre %}"> Eliminar </a>
     </button>
-
+    <button>
+        <a href="{% url 'edit_user' p.nombre %}"> Editar </a>
+    </button>
 {% endfor %} 
 
 {% endblock %}
