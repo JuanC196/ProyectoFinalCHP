@@ -18,4 +18,6 @@ urlpatterns = [
     path('editarUsuario/<usuario_nombre>/', views.editarUsuario, name="edit_user"),
     path('editarVehiculo/<vehiculo_marca>/', views.editarVehiculo, name="edit_vehicle"),
     path('editarComentario/<texto_texto>/', views.editarComentario, name="edit_coment"),
+    path('loginrequest', views.login_request, name="Login"),
+    path('register', views.register, name= 'Register'),
 ]

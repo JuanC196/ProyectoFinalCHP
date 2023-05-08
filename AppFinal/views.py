@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import *
 from AppFinal.forms import *
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import UserCreationForm 
 
 # Create your views here.
 def inicio(request):
@@ -224,3 +227,47 @@ def editarComentario(request, texto_texto):
         miFormulario = ComentarioFormulario(initial={'nombre':texto.nombre, 'email':texto.email, 'telefono':texto.telefono, 'texto':texto.texto})
 
     return render(request, "AppFinal/editarcomentario.html", {"miFormulario":miFormulario, "texto_texto":texto_texto})
+
+#Login de Usuarios 
+def login_request(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data = request.POST)
+        
+        if form.is_valid():
+            nickname = form.cleaned_data.get('username')
+            keypass = form.cleaned_data.get('password')
+            user = authenticate(username=nickname, password=keypass)
+            
+            if user is not None:
+                login(request, user)
+                
+                respuesta = f"Bienvenido {nickname}"
+                #return render(request, "AppFinal/login.html", {'respuesta':respuesta})
+                return HttpResponse(respuesta)
+
+        else:
+                respuesta2 = f"Error, datos no coinciden"
+                #return render(request, "AppFinal/login.html", {"mensaje":"Error, datos incorrectos"})
+                return HttpResponse(respuesta2)
+
+    form = AuthenticationForm()
+
+    return render(request, "AppFinal/login.html", {"form":form})      
+
+#Registro de Usuarios  
+def register(request):
+    if request.method == 'POST':
+        #form = UserCreationForm(request.POST)
+        form = UserRegisterForm(request.POST)
+
+        if form.is_valid():
+            nickname = form.cleaned_data['username']
+            form.save()
+            respuesta = f"Usuario {nickname} creado exitosamente"
+            return HttpResponse(respuesta)
+            #return render(request, "AppFinal/inicio.html", {"mensaje":"Usuario creado exitosamente"})
+    else: 
+        #form = UserCreationForm()
+        form = UserRegisterForm()
+    return render(request, "AppFinal/registro.html", {"form":form})
+
