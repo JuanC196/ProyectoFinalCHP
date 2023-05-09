@@ -12,7 +12,7 @@
 <br>
 <center><div>
     <form action="" method="POST"> {% csrf_token %}
-       <h2>Registra tu usuario</h2>
+       <h2>Registra tu usuario de renta</h2>
        <table>
 
         {{ miFormulario.as_table }}
@@ -24,7 +24,7 @@
         
 </div></center>
 <br>
-<center><h2>Verifica tu usuario</h2></center>
+<center><h2>Verifica tu usuario en la base de datos</h2></center>
 <center><div>
     
     <form action="/AppFinal/buscarusuario/" method="GET">

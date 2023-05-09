@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-@login_required
+
 def inicio(request):
     return render(request, "AppFinal/inicio.html")
 
@@ -104,6 +104,7 @@ def administrador_menu(request):
     return render(request, "AppFinal/administrador_menu.html")
 
 #Vista de read lectura para usuarios
+@login_required
 def leerUsuarios(request):
     usuario = Usuario.objects.all()
     contexto = {"usuario":usuario}
@@ -111,6 +112,7 @@ def leerUsuarios(request):
     return render(request, "AppFinal/administrador_usuario.html", contexto)
 
 #Vista de read lectura para vehiculos
+@login_required
 def leerVehiculos(request):
     vehiculo = Vehiculos.objects.all()
     contexto = {"vehiculo":vehiculo}
@@ -118,6 +120,7 @@ def leerVehiculos(request):
     return render(request, "AppFinal/administrador_vehiculo.html", contexto)
 
 #Vista de read lectura para comentarios
+@login_required
 def leerComentarios(request):
     texto = Comentario.objects.all()
     contexto = {"texto":texto}
@@ -125,6 +128,7 @@ def leerComentarios(request):
     return render(request, "AppFinal/administrador_comentarios.html", contexto)
 
 #Vista de delete para Usuarios
+@login_required
 def eliminarUsuario(request, usuario_nombre):
     usuario = Usuario.objects.get(nombre=usuario_nombre)
     usuario.delete()
@@ -135,6 +139,7 @@ def eliminarUsuario(request, usuario_nombre):
     return render(request, "AppFinal/administrador_usuario.html", contexto)
 
 #Vista de delete para Vehiculos
+@login_required
 def eliminarVehiculo(request, vehiculo_marca):
     vehiculo = Vehiculos.objects.get(marca=vehiculo_marca)
     vehiculo.delete()
@@ -145,6 +150,7 @@ def eliminarVehiculo(request, vehiculo_marca):
     return render(request, "AppFinal/administrador_vehiculo.html", contexto)
 
 #Vista de delete para comentarios
+@login_required
 def eliminarComentario(request, texto_texto ):
     texto = Comentario.objects.get(texto=texto_texto)
     texto.delete()
@@ -154,7 +160,8 @@ def eliminarComentario(request, texto_texto ):
 
     return render(request, "AppFinal/administrador_comentarios.html", contexto)
 
-#Vista para editar usuarios
+#Vista para editar usuarios base de datos
+@login_required
 def editarUsuario(request, usuario_nombre):
     usuario = Usuario.objects.get(nombre=usuario_nombre)
 
@@ -181,6 +188,7 @@ def editarUsuario(request, usuario_nombre):
     return render(request, "AppFinal/editarusuario.html", {"miFormulario":miFormulario, "usuario_nombre":usuario_nombre})
 
 #Vista para editar Vehiculos
+@login_required
 def editarVehiculo(request, vehiculo_marca):
     vehiculo = Vehiculos.objects.get(marca=vehiculo_marca)
 
@@ -208,6 +216,7 @@ def editarVehiculo(request, vehiculo_marca):
     return render(request, "AppFinal/editarvehiculo.html", {"miFormulario":miFormulario, "vehiculo_marca":vehiculo_marca})
 
 #Vista para editar comentarios
+@login_required
 def editarComentario(request, texto_texto):
     texto = Comentario.objects.get(texto=texto_texto)
 
@@ -236,6 +245,8 @@ def editarComentario(request, texto_texto):
 
 #Login de Usuarios 
 def login_request(request):
+    nickname = request.user
+
     if request.method == 'POST':
         form = AuthenticationForm(request, data = request.POST)
         
@@ -247,14 +258,12 @@ def login_request(request):
             if user is not None:
                 login(request, user)
                 
-                respuesta = f"Bienvenido {nickname}"
-                #return render(request, "AppFinal/login.html", {'respuesta':respuesta})
-                return HttpResponse(respuesta)
+                respuesta = f"Bienvenido de nuevo {nickname}"
+                return render(request, "AppFinal/inicio.html", {'respuesta':respuesta})
 
         else:
-                respuesta2 = f"Error, datos no coinciden"
-                #return render(request, "AppFinal/login.html", {"mensaje":"Error, datos incorrectos"})
-                return HttpResponse(respuesta2)
+                respuesta2 = f"Algo anda mal, revisa tus datos para poder ingresar"
+                return render(request, "AppFinal/inicio.html", {'respuesta2':respuesta2})
 
     form = AuthenticationForm()
 
@@ -276,4 +285,29 @@ def register(request):
         #form = UserCreationForm()
         form = UserRegisterForm()
     return render(request, "AppFinal/registro.html", {"form":form})
+
+#Editar Usuarios de Django
+@login_required
+def editarPerfil(request):
+    usuario = request.user
+
+    if request.method == 'POST':
+        miFormulario = UserEditForm(request.POST)
+        if miFormulario.is_valid():
+            informacion = miFormulario.cleaned_data
+            
+            usuario.email = informacion['email']
+            usuario.password1 = informacion['password1']
+            usuario.password2 = informacion['password2']
+            usuario.last_name = informacion['last_name']
+            usuario.first_name = informacion['first_name']
+            usuario.save()
+
+            return render(request, "AppFinal/inicio.html")
+    else:
+        miFormulario = UserEditForm(initial={'email':usuario.email})
+    
+    return render(request, "AppFinal/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario})
+
+
 
