@@ -5,12 +5,15 @@ from AppFinal.forms import *
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm 
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def inicio(request):
     return render(request, "AppFinal/inicio.html")
 
 # Vista Usuarios para guardar informacion
+@login_required
 def usuarios(request):
     if request.method == 'POST':
        miFormulario = UsuarioFormulario(request.POST) 
@@ -30,6 +33,7 @@ def usuarios(request):
     return render(request, "AppFinal/usuarios.html", {"miFormulario": miFormulario})
 
 # Vista Vehiculos para guardar informacion
+@login_required
 def vehiculos(request):
     if request.method == 'POST':
        miFormulario = VehiculoFormulario(request.POST) 
@@ -49,6 +53,7 @@ def vehiculos(request):
     return render(request, "AppFinal/vehiculos.html", {"miFormulario": miFormulario})
 
 # Vista Comentarios para guardar informacion
+@login_required
 def comentarios(request):
     if request.method == 'POST':
        miFormulario = ComentarioFormulario(request.POST) 
@@ -94,6 +99,7 @@ def buscarvehiculo(request):
     return HttpResponse(respuesta)
 
 #Vista de menu de administrador
+@login_required
 def administrador_menu(request):
     return render(request, "AppFinal/administrador_menu.html")
 

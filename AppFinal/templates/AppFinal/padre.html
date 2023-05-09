@@ -47,7 +47,7 @@
                      <div class="full">
                         <div class="center-desk">
                            <div class="logo">
-                              <a href="index.html"><img src="{% static 'AppFinal/images/logo.png' %}" alt="#" /></a>
+                              <a href="{% url 'Inicio' %}"><img src="{% static 'AppFinal/images/logo.png' %}" alt="#" /></a>
                            </div>
                         </div>
                      </div>
@@ -94,6 +94,7 @@
                      </p>
                      <a href="{% url 'Login' %}">Iniciar Sesion</a>
                      <a href="{% url 'Register' %}">Registro de Usuarios</a>
+                     <a href="{% url 'Logout' %}">Cerrar Sesion</a>
                   </div>
                </div>
             </div>

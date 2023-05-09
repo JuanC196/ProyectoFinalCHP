@@ -6,3 +6,20 @@ admin.site.register(Usuario)
 admin.site.register(Vehiculos)
 
 admin.site.register(Comentario)
+
+
+#Super Usuario
+
+#  User
+#  JuanC196
+
+#  Password
+#  superinika1
+
+#Another User
+
+#  User
+#  ElectroMan1234
+
+#  Password
+#  superinika5
