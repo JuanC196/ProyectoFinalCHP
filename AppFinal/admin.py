@@ -7,6 +7,8 @@ admin.site.register(Vehiculos)
 
 admin.site.register(Comentario)
 
+admin.site.register(Avatar)
+
 
 #Super Usuario
 

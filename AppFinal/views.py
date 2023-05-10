@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def inicio(request):
+
     return render(request, "AppFinal/inicio.html")
 
 # Vista Usuarios para guardar informacion
@@ -257,9 +258,10 @@ def login_request(request):
             
             if user is not None:
                 login(request, user)
-                
+                avatares = Avatar.objects.filter(user=request.user.id)
+    
                 respuesta = f"Bienvenido de nuevo {nickname}"
-                return render(request, "AppFinal/inicio.html", {'respuesta':respuesta})
+                return render(request, "AppFinal/inicio.html", {'respuesta':respuesta,"url":avatares[0].imagen.url })
 
         else:
                 respuesta2 = f"Algo anda mal, revisa tus datos para poder ingresar"
@@ -310,4 +312,19 @@ def editarPerfil(request):
     return render(request, "AppFinal/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario})
 
 
+#Añadir un avatar a los usuarios
+def agregarAvatar(request):
+    if request.method == 'POST':
+        miFormulario = AvatarFormulario(request.POST, request.FILES)
+        
+        if miFormulario.is_valid:
+            u = User.objects.get(username=request.user)
+            avatar = Avatar(user=u, imagen=miFormulario.cleaned_data['imagen'])
 
+            avatar.save()
+
+            return render(request, "AppFinal/inicio.html")
+    else:
+        miFormulario = AvatarFormulario()
+    
+    return render(request, "AppFinal/agregarAvatar.html", {"miFormulario":miFormulario})
