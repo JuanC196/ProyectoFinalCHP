@@ -5,7 +5,16 @@
 {% block ContenidoCambiante %}
 <br>
 <center>
-   <img width="200px" src="{{url}}">
+   {% if request.user.is_authenticated %}
+      {% with avatares=request.user.avatar_set.all %}
+         {% if avatares %}
+         <img width="200px" src="{{url}}"> 
+         {% endif %}
+
+      {% endwith %}
+   {% else %}
+
+   {% endif %}
    <h1>{{ respuesta }} {{ nickname }}</h1>
    <h1>{{ respuesta2 }}</h1>
 </center>

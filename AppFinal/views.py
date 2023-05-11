@@ -259,14 +259,14 @@ def login_request(request):
             if user is not None:
                 login(request, user)
                 avatares = Avatar.objects.filter(user=request.user.id)
-    
+
                 respuesta = f"Bienvenido de nuevo {nickname}"
-                return render(request, "AppFinal/inicio.html", {'respuesta':respuesta,"url":avatares[0].imagen.url })
+                return render(request, "AppFinal/inicio.html", {'respuesta':respuesta,"url":avatares[-1].imagen.url})
 
         else:
                 respuesta2 = f"Algo anda mal, revisa tus datos para poder ingresar"
                 return render(request, "AppFinal/inicio.html", {'respuesta2':respuesta2})
-
+            
     form = AuthenticationForm()
 
     return render(request, "AppFinal/login.html", {"form":form})      
@@ -279,10 +279,10 @@ def register(request):
 
         if form.is_valid():
             nickname = form.cleaned_data['username']
+
             form.save()
             respuesta = f"Usuario {nickname} creado exitosamente"
-            return HttpResponse(respuesta)
-            #return render(request, "AppFinal/inicio.html", {"mensaje":"Usuario creado exitosamente"})
+            return render(request, "AppFinal/inicio.html", {'respuesta':respuesta})
     else: 
         #form = UserCreationForm()
         form = UserRegisterForm()
@@ -317,7 +317,7 @@ def agregarAvatar(request):
     if request.method == 'POST':
         miFormulario = AvatarFormulario(request.POST, request.FILES)
         
-        if miFormulario.is_valid:
+        if miFormulario.is_valid():
             u = User.objects.get(username=request.user)
             avatar = Avatar(user=u, imagen=miFormulario.cleaned_data['imagen'])
 

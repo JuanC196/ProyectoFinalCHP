@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth.models import User 
 
+
 class UsuarioFormulario(forms.Form):
     nombre= forms.CharField()
     email= forms.EmailField()
@@ -36,6 +37,7 @@ class UserEditForm(UserCreationForm):
     password2 = forms.CharField(label='Repetir la contraseña', widget=forms.PasswordInput)
     last_name = forms.CharField()
     first_name = forms.CharField()
+    
 
     class Meta:
         model = User
@@ -45,3 +47,4 @@ class UserEditForm(UserCreationForm):
 
 class AvatarFormulario(forms.Form):
     imagen = forms.ImageField(required=True)
+
