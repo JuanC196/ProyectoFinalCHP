@@ -260,8 +260,12 @@ def login_request(request):
                 login(request, user)
                 avatares = Avatar.objects.filter(user=request.user.id)
 
-                respuesta = f"Bienvenido de nuevo {nickname}"
-                return render(request, "AppFinal/inicio.html", {'respuesta':respuesta,"url":avatares[-1].imagen.url})
+                if avatares:
+                    respuesta = f"Bienvenido de nuevo {nickname}"
+                    return render(request, "AppFinal/inicio.html", {'respuesta':respuesta, 'url':avatares[0].imagen.url})
+                else:
+                    respuesta = f"Bienvenido de nuevo {nickname}"
+                    return render(request, "AppFinal/inicio.html", {'respuesta':respuesta})
 
         else:
                 respuesta2 = f"Algo anda mal, revisa tus datos para poder ingresar"
@@ -313,7 +317,10 @@ def editarPerfil(request):
 
 
 #Añadir un avatar a los usuarios
+@login_required
 def agregarAvatar(request):
+    nickname = request.user
+
     if request.method == 'POST':
         miFormulario = AvatarFormulario(request.POST, request.FILES)
         
@@ -323,7 +330,9 @@ def agregarAvatar(request):
 
             avatar.save()
 
-            return render(request, "AppFinal/inicio.html")
+            avatares = Avatar.objects.filter(user=request.user.id)
+            respuesta = f"{nickname} Tu avatar ha sido actualizado"
+            return render(request, "AppFinal/inicio.html", {"respuesta":respuesta, 'url':avatares[0].imagen.url})
     else:
         miFormulario = AvatarFormulario()
     
