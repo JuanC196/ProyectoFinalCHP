@@ -62,10 +62,8 @@ class ComentarioFormularioTest(TestCase):
         form = ComentarioFormulario(data=form_data)
         print(form)
 
-    nombre= forms.CharField()
-    email = forms.EmailField()
-    telefono = forms.IntegerField()
-    texto= forms.CharField() 
+
+#Resultados: el formulario nos manda un error de que tiene que ingresar un numero completo ya que el punto y el negativo afectan la sintaxis que el formulario admite en el campo de telefono, por ende no permite registrar el usuario
 
 #python manage.py test AppFinal.tests.ComentarioFormularioTest
 #python manage.py test AppFinal.tests.ComentarioFormularioTest.test_valid_form
