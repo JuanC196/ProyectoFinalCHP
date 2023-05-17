@@ -12,13 +12,13 @@
 {% for p in vehiculo %}
 
     <li>{{p}}</li>
-    <button>
+    <button class="btn btn-success btn-sm">
         <a href="{% url 'Vehiculos' %}">Añadir</a>
     </button>
-    <button>
+    <button class="btn btn-danger btn-sm">
         <a href="{% url 'delete_vehicle' p.marca %}"> Eliminar </a>
     </button>
-    <button>
+    <button class="btn btn-warning btn-sm">
         <a href="{% url 'edit_vehicle' p.marca %}"> Editar </a>
     </button>
     
@@ -26,3 +26,4 @@
 </div></center> 
 
 {% endblock %}
+

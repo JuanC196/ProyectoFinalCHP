@@ -5,11 +5,12 @@
 {% block ContenidoCambiante %}
 <br>
 <div class="text-bg">
+
       <span>Bienvenido {{user}} al area de administrador</span>
       <a href="{% url 'admin_user' %}">Administrador de Usuarios BD</a>
       <a href="{% url 'admin_vehicle' %}">Administrador de Vehiculos</a>
       <a href="{% url 'admin_coment' %}">Administrador de Comentarios</a>
-      <a href="{% url 'EditarPerfil' %}">Administrador de Usuarios Django</a>
+      <a href="{% url 'EditarPerfil' %}">Editar perfil de {{user}}</a>
       <a href="{% url 'AgregarAvatar' %}">Cambiar Avatar de {{user}}</a>
 </div>
 

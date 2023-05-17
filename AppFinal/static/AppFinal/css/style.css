@@ -198,10 +198,13 @@ blockquote {
 }
 
 button {
-     border: 0;
-     margin: 0;
-     padding: 0;
-     cursor: pointer;
+     border: none;
+     color: white;
+     padding: 15px 32px;
+     text-align: center;
+     text-decoration: none;
+     display: inline-block;
+     font-size: 16px;
 }
 
 .full {
@@ -348,6 +351,7 @@ button {
      align-items: center;
      background-size: 100% 100%;
 }
+
 
 .text-bg {
      text-align: center;
@@ -793,6 +797,7 @@ button {
 .copyright a:hover {
      color: #f6d601;
 }
+
 
 
 /** end footer **/
