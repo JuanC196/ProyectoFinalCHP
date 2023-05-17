@@ -30,8 +30,10 @@ def usuarios(request):
             usuario = Usuario(nombre=informacion['nombre'],email=informacion['email'],telefono=informacion['telefono'])
 
             usuario.save()
-        
-            return render(request, "AppFinal/inicio.html")
+
+            respuesta = "Usuario registrado exitosamente"
+
+            return render(request, "AppFinal/inicio.html", {"respuesta":respuesta})
     else:
        miFormulario = UsuarioFormulario()
     
@@ -50,8 +52,10 @@ def vehiculos(request):
             vehiculo = Vehiculos(marca=informacion['marca'],tipo=informacion['tipo'],modelo=informacion['modelo'],precio=informacion['precio'] )
 
             vehiculo.save()
-        
-            return render(request, "AppFinal/vehiculos.html")
+            
+            respuesta = "Vehiculo registrado exitosamente"
+
+            return render(request, "AppFinal/inicio.html", {"respuesta":respuesta})
     else:
        miFormulario = VehiculoFormulario()
     
@@ -70,8 +74,10 @@ def comentarios(request):
             comentario = Comentario(nombre=informacion['nombre'],email=informacion['email'],telefono=informacion['telefono'],texto=informacion['texto'])
 
             comentario.save()
-        
-            return render(request, "AppFinal/inicio.html")
+
+            respuesta = "Comentario registrado exitosamente"
+
+            return render(request, "AppFinal/inicio.html", {"respuesta":respuesta})
     else:
        miFormulario = ComentarioFormulario()
     
