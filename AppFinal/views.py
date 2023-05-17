@@ -13,6 +13,10 @@ def inicio(request):
 
     return render(request, "AppFinal/inicio.html")
 
+def aboutme(request):
+
+    return render(request, "AppFinal/aboutme.html")
+
 # Vista Usuarios para guardar informacion
 @login_required
 def usuarios(request):
